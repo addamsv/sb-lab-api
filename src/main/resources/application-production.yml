@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: # url of Postgres ${DB_URL}
+    username: # Username of Postgres ${DB_USERNAME}
+    password: # Pass of postgres ${DB_PASS}
+  jpa:
+    hibernate:
+      ddl-auto: none # Data definition language auto generation
