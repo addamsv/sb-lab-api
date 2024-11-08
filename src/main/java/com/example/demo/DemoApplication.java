@@ -23,6 +23,7 @@ public class DemoApplication {
 		System.out.println("http://localhost:80/api/v1/headObjects");
 		System.out.println("http://localhost:80/api/v1/subEntities");
 		System.out.println("http://localhost:80/api/v1/subEntities/110044");
+		System.out.println("https://spring.io/projects#release-calendar");
 	}
 
 	@Bean

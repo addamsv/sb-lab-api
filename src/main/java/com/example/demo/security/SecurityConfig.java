@@ -84,9 +84,7 @@ public class SecurityConfig {
 
         // for /h2-console/**
         .headers((head) -> {
-          head.frameOptions((frameOptions) -> {
-            frameOptions.disable();
-          });
+          head.frameOptions(Customizer.withDefaults()).disable();
         })
 
         .cors(Customizer.withDefaults())
@@ -100,9 +98,9 @@ public class SecurityConfig {
 
         .oauth2ResourceServer((oauth2Server) -> {
           oauth2Server
+              .jwt(Customizer.withDefaults())
               .authenticationEntryPoint(this.authBearerTokenEntryPoint)
-              .accessDeniedHandler(this.authBearerTokenAccessDenied)
-              .jwt(Customizer.withDefaults());
+              .accessDeniedHandler(this.authBearerTokenAccessDenied);
         })
 
         .sessionManagement((sm) -> {
