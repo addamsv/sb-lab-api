@@ -116,8 +116,8 @@ public class ExceptionHandlerAdvice {
     CustomReturnData notFoundExc(NoHandlerFoundException exc) {
         return new CustomReturnData(
             false,
-            CustomStatusCode.FORBIDDEN,
-            "Not Found",
+            CustomStatusCode.NOT_FOUND,
+            "Page Not Found",
             exc.getMessage()
         );
     }
