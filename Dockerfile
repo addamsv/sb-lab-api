@@ -10,6 +10,7 @@ COPY --from=builder application/dependencies/ ./
 COPY --from=builder application/spring-boot-loader/ ./
 COPY --from=builder application/snapshot-dependencies/ ./
 COPY --from=builder application/application/ ./
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+# relocated to launch pckg since sb3.2.0
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
 
 # EXPOSE 8080

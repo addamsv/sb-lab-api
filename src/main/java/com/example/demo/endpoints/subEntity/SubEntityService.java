@@ -2,6 +2,8 @@ package com.example.demo.endpoints.subEntity;
 
 //import com.example.demo.endpoints.subEntity.exception.SubEntityNotFoundException;
 //import com.example.demo.returnDataObject.CustomReturnData;
+import com.example.demo.client.ai.chat.ChatClient;
+import com.example.demo.endpoints.subEntity.DTO.SubEntityDto;
 import com.example.demo.exception.CustomNotFoundException;
 import com.example.demo.utis.UUID;
 import jakarta.transaction.Transactional;
@@ -16,15 +18,18 @@ public class SubEntityService {
 
     private final UUID uuid;
 
-    public SubEntityService(SubEntityRepository subEntityRepository, UUID uuid) {
+    private final ChatClient chatClient;
+
+    public SubEntityService(SubEntityRepository subEntityRepository, UUID uuid, ChatClient chatClient) {
         this.subEntityRepository = subEntityRepository;
         this.uuid = uuid;
+        this.chatClient = chatClient;
     }
 
     public SubEntity findById(String id) {
         return this.subEntityRepository
-                .findById(id)
-                .orElseThrow(() -> new CustomNotFoundException("subEntity", id));
+            .findById(id)
+            .orElseThrow(() -> new CustomNotFoundException("subEntity", id));
     }
 
     public List<SubEntity> getAll() {
@@ -39,15 +44,15 @@ public class SubEntityService {
 
     public SubEntity update(String id, SubEntity candidateToUpdate) {
         return subEntityRepository
-                .findById(id)
+            .findById(id)
 
-                .map((existingSubEntity) -> {
-                    existingSubEntity.setName(candidateToUpdate.getName());
-                    existingSubEntity.setDescription(candidateToUpdate.getDescription());
-                    existingSubEntity.setImgUrl(candidateToUpdate.getImgUrl());
+            .map((existingSubEntity) -> {
+                existingSubEntity.setName(candidateToUpdate.getName());
+                existingSubEntity.setDescription(candidateToUpdate.getDescription());
+                existingSubEntity.setImgUrl(candidateToUpdate.getImgUrl());
 
-                    return subEntityRepository.save(existingSubEntity);
-                }).orElseThrow(() -> new CustomNotFoundException("subEntity", id));
+                return subEntityRepository.save(existingSubEntity);
+            }).orElseThrow(() -> new CustomNotFoundException("subEntity", id));
     }
 
     public void delete(String id) {
@@ -56,6 +61,10 @@ public class SubEntityService {
         });
 
         this.subEntityRepository.deleteById(id);
+    }
+
+    public String summarize(List<SubEntityDto> dtos) {
+        return null;
     }
 
 }
