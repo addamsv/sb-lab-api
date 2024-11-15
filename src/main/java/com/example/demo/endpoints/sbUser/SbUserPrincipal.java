@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class SbUserPrincipal implements UserDetails {
 
-  private SbUser sbUser;
+  private final SbUser sbUser;
 
   public SbUserPrincipal(SbUser sbUser) {
     this.sbUser = sbUser;

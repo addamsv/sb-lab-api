@@ -109,4 +109,15 @@ public class SubEntityController {
             "Transaction is Ok"
         );
     }
+
+    @GetMapping("/summary")
+    public CustomReturnData summarizeSubEntity() {
+        return null;
+//        return new CustomReturnData(
+//            true,
+//            CustomStatusCode.SUCCESS,
+//            "Transaction is Ok",
+//            subEntityDto
+//        );
+    }
 }
